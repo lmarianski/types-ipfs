@@ -38,7 +38,7 @@ declare class IPFS extends EventEmitter {
     dag: IPFS.DagAPI;
     libp2p: any;
     swarm: IPFS.SwarmAPI;
-    files: IPFS.FilesAPI;
+    files: any;
     bitswap: any;
 
     ping(callback: (error: Error) => void): void;
