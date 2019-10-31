@@ -38,7 +38,7 @@ declare class IPFS extends EventEmitter {
     dag: IPFS.DagAPI;
     libp2p: any;
     swarm: IPFS.SwarmAPI;
-    files: any;
+    files: IPFS.FilesAPI;
     bitswap: any;
 
     ping(callback: (error: Error) => void): void;
@@ -162,23 +162,19 @@ declare namespace IPFS {
     }
 
     export interface FilesAPI {
-        createAddStream(options: any, callback: Callback<any>): void;
-        createAddStream(callback: Callback<any>): void;
-
-        createPullStream(options: any): any;
-
-        add(data: FileContent, options: any, callback: Callback<IPFSFile[]>): void;
-        add(data: FileContent, options: any): Promise<IPFSFile[]>;
-        add(data: FileContent, callback: Callback<IPFSFile[]>): void;
-        add(data: FileContent): Promise<IPFSFile[]>;
-
-        cat(hash: Multihash, callback: Callback<FileContent>): void;
-        cat(hash: Multihash): Promise<FileContent>;
-
-        get(hash: Multihash, callback: Callback<IPFSFile[]>): void;
-        get(hash: Multihash): Promise<IPFSFile[]>;
-
-        getPull(hash: Multihash, callback: Callback<any>): void;
+        cp: any
+        flush: any
+        ls: any
+        lsReadableStream: any
+        lsPullStream: any
+        mkdir: any
+        mv: any
+        read: any
+        readPullStream: any
+        readReadableStream: any
+        rm: any
+        stat: any
+        write: any
     }
 
     export interface PeersOptions {
