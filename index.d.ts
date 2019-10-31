@@ -44,7 +44,10 @@ declare class IPFS extends EventEmitter {
     ping(callback: (error: Error) => void): void;
     ping(): Promise<void>;
 
-    pubsub: any; 
+    pubsub: any;
+    
+    // Top level API
+    add(data: any, options?: any): Promise<IPFSFile[]>
 }
 
 declare namespace IPFS {
