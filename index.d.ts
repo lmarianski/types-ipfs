@@ -44,7 +44,48 @@ declare class IPFS extends EventEmitter {
     ping(callback: (error: Error) => void): void;
     ping(): Promise<void>;
 
-    pubsub: any; 
+    pubsub: any;
+    dht: any;
+    pin: any;
+
+    // Top level Files API
+    add(data: IPFS.FileContent, options: any, callback: Callback<IPFS.IPFSFile[]>): void;
+    add(data: IPFS.FileContent, options: any): Promise<IPFS.IPFSFile[]>;
+    add(data: IPFS.FileContent, callback: Callback<IPFS.IPFSFile[]>): void;
+    add(data: IPFS.FileContent): Promise<IPFS.IPFSFile[]>;
+
+    addFromStream(stream: any, options?: any): Promise<IPFS.IPFSFile[]>
+    addFromStream(stream: any, callback: Callback<IPFS.IPFSFile[]>): void;
+    addFromStream(stream: any, options: any, callback: Callback<IPFS.IPFSFile[]>): void;
+
+    addFromUrl(url: string, options: any, callback: Callback<IPFS.IPFSFile[]>): void;
+    addFromUrl(url: string, options: any): Promise<IPFS.IPFSFile[]>;
+    addFromUrl(url: string, callback: Callback<IPFS.IPFSFile[]>): void;
+    addFromUrl(url: string): Promise<IPFS.IPFSFile[]>;
+
+    addFromFs(path: string, options: any, callback: Callback<IPFS.IPFSFile[]>): void;
+    addFromFs(path: string, options: any): Promise<IPFS.IPFSFile[]>;
+    addFromFs(path: string, callback: Callback<IPFS.IPFSFile[]>): void;
+    addFromFs(path: string): Promise<IPFS.IPFSFile[]>;
+
+    addPullStream(options?: any): any;
+    addReadableStream(options?: any): any;
+
+    cat(hash: IPFS.Multihash, callback: Callback<IPFS.FileContent>): void;
+    cat(hash: IPFS.Multihash, options: any, callback: Callback<IPFS.FileContent>): void;
+    cat(hash: IPFS.Multihash, options?: any): Promise<IPFS.FileContent>;
+    catPullStream(hash: IPFS.Multihash, options?: any): any;
+    catReadableStream(hash: IPFS.Multihash, options?: any): any;
+
+    get(hash: IPFS.Multihash, callback: Callback<IPFS.IPFSFile[]>): void;
+    get(hash: IPFS.Multihash): Promise<IPFS.IPFSFile[]>;
+    getPullStream(hash: IPFS.Multihash): any;
+    getReadableStream(hash: IPFS.Multihash): any;
+
+    ls(hash: IPFS.Multihash): Promise<IPFS.IPFSFileInfo[]>;
+    lsPullStream(hash: IPFS.Multihash): any;
+    lsReadableStream(hash: IPFS.Multihash): any;
+
 }
 
 declare namespace IPFS {
@@ -111,25 +152,29 @@ declare namespace IPFS {
         size: number;
         content?: FileContent;
     }
+    export interface IPFSFileInfo {
+        path: string;
+        hash: string;
+        size: number;
+        name: string;
+        depth: number;
+        type: 'file' | 'dir' | string;
+    }
 
     export interface FilesAPI {
-        createAddStream(options: any, callback: Callback<any>): void;
-        createAddStream(callback: Callback<any>): void;
-
-        createPullStream(options: any): any;
-
-        add(data: FileContent, options: any, callback: Callback<IPFSFile[]>): void;
-        add(data: FileContent, options: any): Promise<IPFSFile[]>;
-        add(data: FileContent, callback: Callback<IPFSFile[]>): void;
-        add(data: FileContent): Promise<IPFSFile[]>;
-
-        cat(hash: Multihash, callback: Callback<FileContent>): void;
-        cat(hash: Multihash): Promise<FileContent>;
-
-        get(hash: Multihash, callback: Callback<IPFSFile[]>): void;
-        get(hash: Multihash): Promise<IPFSFile[]>;
-
-        getPull(hash: Multihash, callback: Callback<any>): void;
+        cp: any
+        flush: any
+        ls: any
+        lsReadableStream: any
+        lsPullStream: any
+        mkdir: any
+        mv: any
+        read: any
+        readPullStream: any
+        readReadableStream: any
+        rm: any
+        stat: any
+        write: any
     }
 
     export interface PeersOptions {
