@@ -45,9 +45,19 @@ declare class IPFS extends EventEmitter {
     ping(): Promise<void>;
 
     pubsub: any;
-    
-    // Top level API
-    add(data: any, options?: any): Promise<IPFSFile[]>
+    dht: any;
+    pin: any;
+    // Top level Files API
+    add(data: IPFS.FileContent, options: any, callback: Callback<IPFS.IPFSFile[]>): void;
+    add(data: IPFS.FileContent, options: any): Promise<IPFS.IPFSFile[]>;
+    add(data: IPFS.FileContent, callback: Callback<IPFS.IPFSFile[]>): void;
+    add(data: IPFS.FileContent): Promise<IPFS.IPFSFile[]>;
+
+    cat(hash: IPFS.Multihash, callback: Callback<IPFS.FileContent>): void;
+    cat(hash: IPFS.Multihash): Promise<IPFS.FileContent>;
+
+    get(hash: IPFS.Multihash, callback: Callback<IPFS.IPFSFile[]>): void;
+    get(hash: IPFS.Multihash): Promise<IPFS.IPFSFile[]>;
 }
 
 declare namespace IPFS {
