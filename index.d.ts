@@ -186,6 +186,7 @@ declare namespace IPFS {
 
     export interface PeerInfo {
         id: PeerId;
+        _idB58String: string;
         multiaddr: Multiaddr;
         multiaddrs: Multiaddr[];
         distinctMultiaddr(): Multiaddr[];
